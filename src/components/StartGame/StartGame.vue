@@ -10,50 +10,77 @@
             id="name"
             required
             v-model="game.playerName"
-            name="Spieler Name"
+            name="Spieler Name:"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="date">Datum</label>
+          <input
+            type="text"
+            class="form-control"
+            id="date"
+            required
+            v-model="game.date"
+            name="Spiel Datum:"
           />
         </div>
 
         <div class="form-group">
           <label for="Standort">Standort</label>
-          <input
+          <select
             class="form-control"
-            id="Standort"
+            id="location"
             required
             v-model="game.playerLocation"
-            name="Standort"
-          />
+            name="Standort:"
+          >
+            <option>Berlin</option>
+            <option>München</option>
+            <option>Würzburg</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="Position">Position</label>
-          <input
+          <select
             class="form-control"
-            id="Position"
+            id="position"
             required
             v-model="game.playerPosition"
-            name="Spieler Position"
-          />
+            name="Spieler Position:"
+          >
+            <option>Vorne</option>
+            <option>Hinten</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="Modus">Modus</label>
-          <input
+          <select
             class="form-control"
-            id="Modus"
+            id="modus"
             required
             v-model="game.gameModus"
-            name="Modus"
-          />
+            name="Modus:"
+          >
+            <option>1-Match</option>
+            <option>BestOf 3</option>
+            <option>BestOf 5</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="Ergebnis">Ergebnis</label>
-          <input
+          <select
             class="form-control"
-            id="Ergebnis"
+            id="result"
+            required
             v-model="game.gameResult"
-            name="Ergebnis"
-          />
+            name="Ergebnis:"
+          >
+            <option>Gewonnen</option>
+            <option>Verloren</option>
+          </select>
         </div>
 
         <button @click="saveGame" class="btn btn-success">Submit</button>
@@ -61,7 +88,9 @@
 
       <div v-else>
         <h4>Spiel angelegt!</h4>
-        <button class="btn btn-success" @click="newGame">Add</button>
+        <button class="btn btn-success" @click="newGame">
+          Neues Spiel anlegen
+        </button>
       </div>
     </div>
   </section>
@@ -69,6 +98,10 @@
 
 <script>
 import DataService from "../services/DataService";
+
+// import Datepicker from "vue3-datepicker";
+// import { ref } from "vue";
+// const date = ref(new Date());
 
 export default {
   name: "add-player",
@@ -89,6 +122,7 @@ export default {
     saveGame() {
       let data = {
         name: this.game.playerName,
+        date: this.game.date,
         playerLocation: this.game.playerLocation,
         playerPosition: this.game.playerPosition,
         gameModus: this.game.gameModus,
