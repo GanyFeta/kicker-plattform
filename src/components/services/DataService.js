@@ -1,12 +1,12 @@
 import firestore from "@/firebase";
 
-const db = firestore.collection("/tutorials");
+const db = firestore.collection("/games");
 class DataService {
   getAll() {
     return db;
   }
-  create(tutorial) {
-    return db.add(tutorial);
+  create(game) {
+    return db.add(game);
   }
 
   update(id, value) {
